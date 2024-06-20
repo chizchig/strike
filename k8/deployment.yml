@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: strike-deployment
+  labels:
+    app: strike-app
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: strike-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: strike-app
+    spec:
+      imagePullSecrets:
+        - name: dockerhub-credential
+      containers:
+        - name: strike-app
