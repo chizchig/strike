@@ -24,6 +24,7 @@ jobs:
 
             - name: Builder Docker image
               run: | 
+                cd k8
                 docker build -t shadowhub/strike:${{ steps.datetime.outputs.tag }} .
 
             - name: Push Docker image to Docker Hub
